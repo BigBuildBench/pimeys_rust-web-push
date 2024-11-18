@@ -1,0 +1,26 @@
+[package]
+name = "web-push"
+description = "Web push notification client with support for http-ece encryption and VAPID authentication."
+version = "0.10.2"
+authors = ["Julius de Bruijn <julius+github@nauk.io>", "Andrew Ealovega <Andrew@Ealovega.dev>"]
+license = "Apache-2.0"
+homepage = "https://github.com/pimeys/rust-web-push"
+repository = "https://github.com/pimeys/rust-web-push"
+documentation = "https://docs.rs/web-push/"
+readme = "README.md"
+keywords = ["web-push", "http-ece", "vapid"]
+categories = ["web-programming", "asynchronous"]
+edition = "2021"
+
+[features]
+default = ["isahc-client"]
+isahc-client = ["isahc", "futures-lite/futures-io"]  #futures are only used for read_to_end() in isach client.
+hyper-client = ["hyper", "hyper-tls"] #use features = ["hyper-client"], default-features = false for about 300kb size decrease.
+
+[dependencies]
+
+[dev-dependencies]
+argparse = "^0.2"
+regex = "^1.5"
+tokio = { version = "^1.1", features = ["macros", "rt-multi-thread"] }
+lazy_static = "^1.4"
